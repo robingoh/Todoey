@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B769C2E7218E22CC00BCAEBA /* TodoeyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B769C2E6218E22CC00BCAEBA /* TodoeyUITests.swift */; };
+		B769C2EF218E37B500BCAEBA /* TodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B769C2EE218E37B500BCAEBA /* TodoItem.swift */; };
 		B7FC223A218CF54A00BD28FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FC2239218CF54A00BD28FD /* AppDelegate.swift */; };
 		B7FC223C218CF54A00BD28FD /* TodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FC223B218CF54A00BD28FD /* TodoListViewController.swift */; };
 		B7FC223F218CF54A00BD28FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7FC223D218CF54A00BD28FD /* Main.storyboard */; };
@@ -29,6 +30,7 @@
 		B769C2E4218E22CC00BCAEBA /* TodoeyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TodoeyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B769C2E6218E22CC00BCAEBA /* TodoeyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoeyUITests.swift; sourceTree = "<group>"; };
 		B769C2E8218E22CC00BCAEBA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B769C2EE218E37B500BCAEBA /* TodoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItem.swift; sourceTree = "<group>"; };
 		B7FC2236218CF54A00BD28FD /* Todoey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Todoey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7FC2239218CF54A00BD28FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B7FC223B218CF54A00BD28FD /* TodoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListViewController.swift; sourceTree = "<group>"; };
@@ -65,6 +67,41 @@
 			path = TodoeyUITests;
 			sourceTree = "<group>";
 		};
+		B769C2F1218E429F00BCAEBA /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B7FC2239218CF54A00BD28FD /* AppDelegate.swift */,
+				B7FC223B218CF54A00BD28FD /* TodoListViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		B769C2F2218E42AB00BCAEBA /* Supporting files */ = {
+			isa = PBXGroup;
+			children = (
+				B7FC2240218CF54B00BD28FD /* Assets.xcassets */,
+				B7FC2245218CF54B00BD28FD /* Info.plist */,
+			);
+			path = "Supporting files";
+			sourceTree = "<group>";
+		};
+		B769C2F3218E42BA00BCAEBA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B7FC223D218CF54A00BD28FD /* Main.storyboard */,
+				B7FC2242218CF54B00BD28FD /* LaunchScreen.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B769C2F4218E42C000BCAEBA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B769C2EE218E37B500BCAEBA /* TodoItem.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		B7FC222D218CF54A00BD28FD = {
 			isa = PBXGroup;
 			children = (
@@ -86,12 +123,10 @@
 		B7FC2238218CF54A00BD28FD /* Todoey */ = {
 			isa = PBXGroup;
 			children = (
-				B7FC2239218CF54A00BD28FD /* AppDelegate.swift */,
-				B7FC223B218CF54A00BD28FD /* TodoListViewController.swift */,
-				B7FC223D218CF54A00BD28FD /* Main.storyboard */,
-				B7FC2240218CF54B00BD28FD /* Assets.xcassets */,
-				B7FC2242218CF54B00BD28FD /* LaunchScreen.storyboard */,
-				B7FC2245218CF54B00BD28FD /* Info.plist */,
+				B769C2F1218E429F00BCAEBA /* Controllers */,
+				B769C2F3218E42BA00BCAEBA /* Views */,
+				B769C2F2218E42AB00BCAEBA /* Supporting files */,
+				B769C2F4218E42C000BCAEBA /* Models */,
 			);
 			path = Todoey;
 			sourceTree = "<group>";
@@ -206,6 +241,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B7FC223C218CF54A00BD28FD /* TodoListViewController.swift in Sources */,
+				B769C2EF218E37B500BCAEBA /* TodoItem.swift in Sources */,
 				B7FC223A218CF54A00BD28FD /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
