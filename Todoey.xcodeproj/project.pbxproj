@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B769C2E7218E22CC00BCAEBA /* TodoeyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B769C2E6218E22CC00BCAEBA /* TodoeyUITests.swift */; };
 		B7FC223A218CF54A00BD28FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FC2239218CF54A00BD28FD /* AppDelegate.swift */; };
 		B7FC223C218CF54A00BD28FD /* TodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FC223B218CF54A00BD28FD /* TodoListViewController.swift */; };
 		B7FC223F218CF54A00BD28FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7FC223D218CF54A00BD28FD /* Main.storyboard */; };
@@ -14,7 +15,20 @@
 		B7FC2244218CF54B00BD28FD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7FC2242218CF54B00BD28FD /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		B769C2E9218E22CC00BCAEBA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B7FC222E218CF54A00BD28FD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B7FC2235218CF54A00BD28FD;
+			remoteInfo = Todoey;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		B769C2E4218E22CC00BCAEBA /* TodoeyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TodoeyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B769C2E6218E22CC00BCAEBA /* TodoeyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoeyUITests.swift; sourceTree = "<group>"; };
+		B769C2E8218E22CC00BCAEBA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B7FC2236218CF54A00BD28FD /* Todoey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Todoey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7FC2239218CF54A00BD28FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B7FC223B218CF54A00BD28FD /* TodoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListViewController.swift; sourceTree = "<group>"; };
@@ -25,6 +39,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		B769C2E1218E22CC00BCAEBA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B7FC2233218CF54A00BD28FD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -35,10 +56,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B769C2E5218E22CC00BCAEBA /* TodoeyUITests */ = {
+			isa = PBXGroup;
+			children = (
+				B769C2E6218E22CC00BCAEBA /* TodoeyUITests.swift */,
+				B769C2E8218E22CC00BCAEBA /* Info.plist */,
+			);
+			path = TodoeyUITests;
+			sourceTree = "<group>";
+		};
 		B7FC222D218CF54A00BD28FD = {
 			isa = PBXGroup;
 			children = (
 				B7FC2238218CF54A00BD28FD /* Todoey */,
+				B769C2E5218E22CC00BCAEBA /* TodoeyUITests */,
 				B7FC2237218CF54A00BD28FD /* Products */,
 			);
 			sourceTree = "<group>";
@@ -47,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				B7FC2236218CF54A00BD28FD /* Todoey.app */,
+				B769C2E4218E22CC00BCAEBA /* TodoeyUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -67,6 +99,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		B769C2E3218E22CC00BCAEBA /* TodoeyUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B769C2ED218E22CC00BCAEBA /* Build configuration list for PBXNativeTarget "TodoeyUITests" */;
+			buildPhases = (
+				B769C2E0218E22CC00BCAEBA /* Sources */,
+				B769C2E1218E22CC00BCAEBA /* Frameworks */,
+				B769C2E2218E22CC00BCAEBA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B769C2EA218E22CC00BCAEBA /* PBXTargetDependency */,
+			);
+			name = TodoeyUITests;
+			productName = TodoeyUITests;
+			productReference = B769C2E4218E22CC00BCAEBA /* TodoeyUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		B7FC2235218CF54A00BD28FD /* Todoey */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B7FC2248218CF54B00BD28FD /* Build configuration list for PBXNativeTarget "Todoey" */;
@@ -94,6 +144,10 @@
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "Robin Goh";
 				TargetAttributes = {
+					B769C2E3218E22CC00BCAEBA = {
+						CreatedOnToolsVersion = 9.4.1;
+						TestTargetID = B7FC2235218CF54A00BD28FD;
+					};
 					B7FC2235218CF54A00BD28FD = {
 						CreatedOnToolsVersion = 9.4.1;
 					};
@@ -113,11 +167,19 @@
 			projectRoot = "";
 			targets = (
 				B7FC2235218CF54A00BD28FD /* Todoey */,
+				B769C2E3218E22CC00BCAEBA /* TodoeyUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		B769C2E2218E22CC00BCAEBA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B7FC2234218CF54A00BD28FD /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -131,6 +193,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		B769C2E0218E22CC00BCAEBA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B769C2E7218E22CC00BCAEBA /* TodoeyUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B7FC2232218CF54A00BD28FD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -141,6 +211,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B769C2EA218E22CC00BCAEBA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B7FC2235218CF54A00BD28FD /* Todoey */;
+			targetProxy = B769C2E9218E22CC00BCAEBA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		B7FC223D218CF54A00BD28FD /* Main.storyboard */ = {
@@ -162,6 +240,44 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		B769C2EB218E22CC00BCAEBA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 95KB4CCQUW;
+				INFOPLIST_FILE = TodoeyUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.robingoh.TodoeyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Todoey;
+			};
+			name = Debug;
+		};
+		B769C2EC218E22CC00BCAEBA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 95KB4CCQUW;
+				INFOPLIST_FILE = TodoeyUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.robingoh.TodoeyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Todoey;
+			};
+			name = Release;
+		};
 		B7FC2246218CF54B00BD28FD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -315,6 +431,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		B769C2ED218E22CC00BCAEBA /* Build configuration list for PBXNativeTarget "TodoeyUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B769C2EB218E22CC00BCAEBA /* Debug */,
+				B769C2EC218E22CC00BCAEBA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		B7FC2231218CF54A00BD28FD /* Build configuration list for PBXProject "Todoey" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
