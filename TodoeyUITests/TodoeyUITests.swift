@@ -34,7 +34,7 @@ class TodoeyUITests: XCTestCase {
         let app = XCUIApplication()
         app.navigationBars["Todoey"].buttons["Add"].tap()
         app.alerts["Add new todo"].collectionViews.textFields["Enter new todo"].tap()
-        app.typeText("get an awesome job")
+        app.typeText("earn a lot of money")
         app.alerts["Add new todo"].buttons["Add"].tap()
         app.otherElements.containing(.navigationBar, identifier:"Todoey").children(matching: .other).element.children(matching: .other).element.children(matching: .table).element.swipeUp()
     }

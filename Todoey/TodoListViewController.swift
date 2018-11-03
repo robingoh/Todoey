@@ -9,12 +9,18 @@
 import UIKit
 
 class TodoListViewController: UITableViewController {
+    //MARK: - Persistence Storage
+    let defaults = UserDefaults.standard
+    let TODO_ARRAY_KEY = "todoArray"
     
     var todoArray = ["dispose food", "complete ios course", "sleep early"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        if let array = defaults.array(forKey: TODO_ARRAY_KEY) as? [String] {
+            todoArray = array
+        }
     }
 
     //MARK: - Tableview Datasource Methods
@@ -48,6 +54,9 @@ class TodoListViewController: UITableViewController {
         let addAction = UIAlertAction(title: "Add", style: .default) { (alertAction) in
             if let userText = todoTextField.text {
                 self.todoArray.append(userText)
+                
+                self.defaults.setValue(self.todoArray, forKey: self.TODO_ARRAY_KEY)
+                
                 self.tableView.reloadData()
             } else {
                 print("something off")
