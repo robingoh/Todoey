@@ -10,31 +10,16 @@ import UIKit
 
 class TodoListViewController: UITableViewController {
     //MARK: - Persistence Storage
-    let defaults = UserDefaults.standard
     let TODO_ARRAY_KEY = "todoArray"
+    
+    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("todoItem.plist")
     
     var todoArray = [TodoItem]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        var item = TodoItem()
-        item.name = "dispose food"
-        todoArray.append(item)
         
-        item = TodoItem()
-        item.name = "complete ios course"
-        todoArray.append(item)
-        
-        for _ in 1...30 {
-            item = TodoItem()
-            item.name = "sleep early"
-            todoArray.append(item)
-        }
-        
-        if let array = defaults.array(forKey: TODO_ARRAY_KEY) as? [TodoItem] {
-            todoArray = array
-        }
+        loadTodoArray()
     }
 
     //MARK: - Tableview Datasource Methods
@@ -52,12 +37,11 @@ class TodoListViewController: UITableViewController {
     
     //MARK: - Tableview Delegate Methods
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(todoArray[indexPath.row])
         tableView.deselectRow(at: indexPath, animated: true)
         
         todoArray[indexPath.row].isDone = !todoArray[indexPath.row].isDone
         
-        tableView.reloadData()
+        saveTodoArray()
     }
     
     //MARK: - Add new todo
@@ -70,11 +54,8 @@ class TodoListViewController: UITableViewController {
                 let userTodoItem = TodoItem()
                 userTodoItem.name = userText
                 self.todoArray.append(userTodoItem)
-            
-                // Save to UserDefaults
-//                self.defaults.set(self.todoArray, forKey: self.TODO_ARRAY_KEY)
-                // Reload tableview to display newest update
-                self.tableView.reloadData()
+
+                self.saveTodoArray()
             } else {
                 print("something off")
             }
@@ -87,6 +68,29 @@ class TodoListViewController: UITableViewController {
         }
         
         present(alert, animated: true, completion: nil)
+    }
+    
+    //MARK: - Model manipulation methods
+    func saveTodoArray() {
+        let encoder = PropertyListEncoder()
+        do {
+            let data = try encoder.encode(self.todoArray)
+            try data.write(to: self.dataFilePath!)
+        } catch {
+            print("Error encoding todoArray, \(error)")
+        }
+        tableView.reloadData()
+    }
+    
+    func loadTodoArray() {
+        if let data = try? Data(contentsOf: dataFilePath!) {
+            let decoder = PropertyListDecoder()
+            do {
+                todoArray = try decoder.decode([TodoItem].self, from: data)
+            } catch {
+                print("Error loading saved todoArray, \(error)")
+            }
+        }
     }
     
     
