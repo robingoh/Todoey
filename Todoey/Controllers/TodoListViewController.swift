@@ -15,12 +15,16 @@ class TodoListViewController: UITableViewController {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     var todoArray = [TodoItem]()
+    var selectedCategory: TodoCategory? {
+        didSet {
+            loadTodoArray()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
         print(dataFilePath!)
-        loadTodoArray()
     }
     
     //MARK: - Tableview Datasource Methods
@@ -55,6 +59,7 @@ class TodoListViewController: UITableViewController {
                 let userTodoItem = TodoItem(context: self.context)
                 userTodoItem.name = userText
                 userTodoItem.isDone = false
+                userTodoItem.parentCategory = self.selectedCategory
                 
                 self.todoArray.append(userTodoItem)
                 
@@ -83,7 +88,16 @@ class TodoListViewController: UITableViewController {
         tableView.reloadData()
     }
     
-    func loadTodoArray(with request: NSFetchRequest<TodoItem> = TodoItem.fetchRequest()) {
+    func loadTodoArray(with request: NSFetchRequest<TodoItem> = TodoItem.fetchRequest(), with predicate: NSPredicate? = nil) {
+        let categoryPredicate = NSPredicate(format: "parentCategory.name MATCHES %@", selectedCategory!.name!)
+
+        if let additionalPredicate = predicate {
+            let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate, additionalPredicate])
+            request.predicate = compoundPredicate
+        } else {
+            request.predicate = categoryPredicate
+        }
+        
         do {
             todoArray = try context.fetch(request)
         } catch {
@@ -99,10 +113,10 @@ extension TodoListViewController: UISearchBarDelegate {
         if let searchTerm = searchBar.text {
             let request: NSFetchRequest<TodoItem> = TodoItem.fetchRequest()
             
-            request.predicate = NSPredicate(format: "name CONTAINS[cd] %@", searchTerm)
+            let searchPredicate = NSPredicate(format: "name CONTAINS[cd] %@", searchTerm)
             request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
             
-            loadTodoArray(with: request)
+            loadTodoArray(with: request, with: searchPredicate)
         }
     }
     
