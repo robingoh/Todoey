@@ -83,7 +83,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="03o-CK-Pta">
                             <color key="tintColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
-                                <action selector="addNewTodo:" destination="6Ot-70-ipp" id="08o-dJ-4Zg"/>
+                                <action selector="addNewTodoButtonPressed:" destination="6Ot-70-ipp" id="08o-dJ-4Zg"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
