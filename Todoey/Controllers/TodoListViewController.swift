@@ -8,7 +8,7 @@
 
 import UIKit
 import RealmSwift
-import SwipeCellKit
+import ChameleonFramework
 
 class TodoListViewController: SwipeTableViewController {
     let realm = try! Realm()
@@ -44,12 +44,21 @@ class TodoListViewController: SwipeTableViewController {
             cell.textLabel?.text = "No item added yet"
         }
         
+        if let selectedCategoryColor = UIColor(hexString: selectedCategory?.color) {
+            cell.backgroundColor = selectedCategoryColor.darken(byPercentage: CGFloat(indexPath.row)/CGFloat(todoItems!.count))
+            let contrastingColor = UIColor(contrastingBlackOrWhiteColorOn: cell.backgroundColor, isFlat: true)
+            cell.textLabel?.textColor = contrastingColor
+            cell.tintColor = contrastingColor
+        }
+        
         return cell
     }
     
     //MARK: - Tableview Delegate Methods
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        DispatchQueue.main.async {
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
         
         if let item = todoItems?[indexPath.row] {
             do {
@@ -113,7 +122,6 @@ class TodoListViewController: SwipeTableViewController {
             do {
                 try self.realm.write {
                     self.realm.delete(itemToDelete)
-//                    tableView.reloadData()
                 }
             } catch {
                 print("Error deleting item from model, \(error)")

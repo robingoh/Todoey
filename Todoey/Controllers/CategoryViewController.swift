@@ -19,11 +19,6 @@ class CategoryViewController: SwipeTableViewController {
         load()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        tableView.separatorStyle = .none
-    }
-
     // MARK: - Tableview Datasource Methods
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return categories?.count ?? 1
@@ -33,6 +28,9 @@ class CategoryViewController: SwipeTableViewController {
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
         cell.textLabel?.text = categories?[indexPath.row].name ?? "No categories added yet"
         cell.backgroundColor = UIColor(hexString: categories?[indexPath.row].color)
+        let contrastingColor: UIColor? = UIColor(contrastingBlackOrWhiteColorOn: cell.backgroundColor, isFlat: true)
+        cell.textLabel?.textColor = contrastingColor
+        cell.tintColor = contrastingColor
         cell.accessoryType = .disclosureIndicator
         return cell
     }
