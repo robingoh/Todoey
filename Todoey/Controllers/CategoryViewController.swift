@@ -8,7 +8,7 @@
 
 import UIKit
 import RealmSwift
-
+import ChameleonFramework
 
 class CategoryViewController: SwipeTableViewController {
     var categories: Results<Category>?
@@ -32,6 +32,7 @@ class CategoryViewController: SwipeTableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
         cell.textLabel?.text = categories?[indexPath.row].name ?? "No categories added yet"
+        cell.backgroundColor = UIColor(hexString: categories?[indexPath.row].color)
         cell.accessoryType = .disclosureIndicator
         return cell
     }
@@ -60,6 +61,7 @@ class CategoryViewController: SwipeTableViewController {
             if let newCategoryName = categoryTextField.text {
                 let newCategory = Category()
                 newCategory.name = newCategoryName
+                newCategory.color = (UIColor.randomFlat()?.hexValue())!
                 self.save(category: newCategory)
             }
         }
