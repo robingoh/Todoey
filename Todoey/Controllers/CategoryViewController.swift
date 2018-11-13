@@ -9,7 +9,8 @@
 import UIKit
 import RealmSwift
 
-class CategoryViewController: UITableViewController {
+
+class CategoryViewController: SwipeTableViewController {
     var categories: Results<Category>?
     let realm = try! Realm()
     
@@ -20,6 +21,7 @@ class CategoryViewController: UITableViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+        tableView.separatorStyle = .none
     }
 
     // MARK: - Tableview Datasource Methods
@@ -28,7 +30,7 @@ class CategoryViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryItemCell", for: indexPath)
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
         cell.textLabel?.text = categories?[indexPath.row].name ?? "No categories added yet"
         cell.accessoryType = .disclosureIndicator
         return cell
@@ -76,15 +78,28 @@ class CategoryViewController: UITableViewController {
         do {
             try realm.write {
                 realm.add(category)
+                tableView.reloadData()
             }
         } catch {
             print("Error saving categories, \(error)")
         }
-        tableView.reloadData()
     }
     
     func load() {
         categories = realm.objects(Category.self)
         tableView.reloadData()
+    }
+    
+    // MARK: - Delete data after swipe
+    override func deleteCellFromModel(at indexPath: IndexPath) {
+        if let categoryToDelete = categories?[indexPath.row] {
+            do {
+                try realm.write {
+                    realm.delete(categoryToDelete)
+                }
+            } catch {
+                print("Error deleting category from model, \(error)")
+            }
+        }
     }
 }
