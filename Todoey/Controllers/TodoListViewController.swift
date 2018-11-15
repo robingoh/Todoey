@@ -12,6 +12,9 @@ import ChameleonFramework
 
 class TodoListViewController: SwipeTableViewController {
     let realm = try! Realm()
+    let originalColor = UIColor.orange
+    
+    @IBOutlet weak var searchBar: UISearchBar!
     
     var todoItems: Results<Item>?
     
@@ -23,10 +26,35 @@ class TodoListViewController: SwipeTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
-        print(dataFilePath!)
+//        let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+//        print(dataFilePath!)
         
         tableView.rowHeight = 80.00
+        tableView.bounces = true
+        tableView.backgroundColor = UIColor(hexString: selectedCategory!.color)?.darken(byPercentage: 0.5)
+        title = selectedCategory?.name
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        guard let color = UIColor(hexString: selectedCategory?.color) else { fatalError("color hex string is invalid. \(selectedCategory!)") }
+            
+            searchBar.barTintColor = color
+            searchBar.tintColor = color
+        
+            setNavBarColor(color: color)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        setNavBarColor(color: originalColor)
+    }
+    
+    func setNavBarColor(color: UIColor) {
+        guard let navBar = navigationController?.navigationBar else { fatalError("There is no navigation controller.") }
+        let contrastColor = UIColor(contrastingBlackOrWhiteColorOn: color, isFlat: true)
+        navBar.tintColor = contrastColor
+        navBar.barTintColor = color
+        navBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: contrastColor!]
     }
     
     //MARK: - Tableview Datasource Methods
@@ -81,7 +109,7 @@ class TodoListViewController: SwipeTableViewController {
         let alert = UIAlertController(title: "Add new todo", message: "", preferredStyle: .alert)
         
         let addAction = UIAlertAction(title: "Add", style: .default) { (alertAction) in
-            if let userTypedText = todoTextField.text {
+            if let userTypedText = todoTextField.text, !userTypedText.isEmpty {
                 if let currentCategory = self.selectedCategory {
                     do {
                         try self.realm.write {
